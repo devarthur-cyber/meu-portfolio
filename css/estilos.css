@@ -1,0 +1,603 @@
+/* =========================================================
+   Arthur — Site Pessoal
+   Direção visual: "painel de sistema" — inspirada no universo
+   de segurança da informação / automação que é o interesse
+   central do autor. Tipografia técnica, painéis com bordas
+   finas, navegação em formato de árvore de arquivos.
+
+   CP3 — tema claro/escuro por variáveis CSS (data-theme)
+
+   CP2 — Interface responsiva
+   Abordagem mobile-first: o bloco base (sem media query)
+   define o layout de tela pequena. As media queries usam
+   min-width e vão adicionando complexidade conforme a tela
+   cresce — nunca o contrário.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0d1117;
+  --panel: #151b23;
+  --panel-border: #2a323d;
+  --text: #e6e8eb;
+  --muted: #8b94a3;
+  --accent: #e3b341;
+  --accent-2: #5fd1c9;
+  --on-accent: #0d1117;
+  --hover: rgba(255, 255, 255, 0.04);
+  --accent-soft: rgba(227, 179, 65, 0.08);
+  --radius: 6px;
+  --sidebar-w: 240px;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+/* Tema claro (CP3): só redefine as variáveis. O JavaScript marca
+   <html data-theme="claro"> e o resto do CSS acompanha sozinho. */
+:root[data-theme="claro"] {
+  --bg: #f6f8fa;
+  --panel: #ffffff;
+  --panel-border: #d0d7de;
+  --text: #1f2328;
+  --muted: #57606a;
+  --accent: #9a6700;
+  --accent-2: #0a6b66;
+  --on-accent: #ffffff;
+  --hover: rgba(0, 0, 0, 0.05);
+  --accent-soft: rgba(154, 103, 0, 0.1);
+}
+
+* { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+:root[data-theme="claro"] { color-scheme: light; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent-2); }
+a:hover { color: var(--accent); }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- mídia responsiva ---------- */
+
+img, video, iframe, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   MOBILE FIRST — estilos base (telas pequenas, sem media query)
+   ============================================================ */
+
+/* ---------- layout shell ---------- */
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---------- cabeçalho / menu ---------- */
+
+.site-header {
+  width: 100%;
+  background: var(--panel);
+  border-bottom: 1px solid var(--panel-border);
+  padding: 1.5rem 1.25rem;
+}
+
+.site-header .identity {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.site-header .identity h1 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.site-header .identity p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.site-nav {
+  margin-top: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.site-nav p.label {
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Flexbox no menu: alinhado e com quebra de linha no mobile */
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.site-nav li { margin: 0; }
+
+.site-nav a {
+  display: block;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+  background: var(--hover);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.site-nav a .tag {
+  color: var(--muted);
+  margin-right: 0.4rem;
+}
+
+/* Flexbox em seção de conteúdo (links de contato) */
+.site-header .contact-links {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--panel-border);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* ---------- conteúdo principal ---------- */
+
+main {
+  flex: 1;
+  padding: 2rem 1.25rem;
+  max-width: 900px;
+}
+
+main > .page-title {
+  margin-bottom: 0.35rem;
+}
+
+main .page-kicker {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+
+main .lede {
+  color: var(--muted);
+  max-width: 62ch;
+  margin-bottom: 2rem;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 1.75rem; margin: 0; }
+h2 { font-size: 1.25rem; margin: 0 0 1rem; }
+h3 { font-size: 1.05rem; margin: 0 0 0.5rem; }
+
+p { max-width: 68ch; }
+
+section + section { margin-top: 2.5rem; }
+
+/* ---------- cartões ---------- */
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.card + .card { margin-top: 1rem; }
+
+/* Grid — layout de cartões de projeto (1 coluna no mobile) */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Flexbox em outra seção de conteúdo (tags de interesse) */
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-list li {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  color: var(--accent-2);
+}
+
+/* ---------- tabelas ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+caption {
+  text-align: left;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.6rem 0.6rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+th {
+  color: var(--muted);
+  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+/* ---------- formulário ---------- */
+
+form {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 100%;
+}
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.hint { font-size: 0.75rem; color: var(--muted); }
+
+input, textarea, select {
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 0.6rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+textarea { resize: vertical; min-height: 110px; }
+
+.checkbox-row {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.checkbox-row input { width: auto; margin-top: 0.2rem; }
+.checkbox-row label { color: var(--text); font-family: var(--font-body); font-size: 0.9rem; }
+
+button {
+  justify-self: start;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: none;
+  border-radius: 4px;
+  padding: 0.7rem 1.4rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+button:hover { background: var(--accent-2); }
+
+/* ---------- multimídia ---------- */
+
+video, iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  border: 1px solid var(--panel-border);
+  display: block;
+}
+
+audio { width: 100%; }
+
+/* ---------- gráficos / svg / canvas ---------- */
+
+canvas {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  display: block;
+}
+
+.svg-shield {
+  width: 120px;
+  height: 120px;
+}
+
+.svg-shield .plate { fill: var(--panel); stroke: var(--panel-border); stroke-width: 2; }
+.svg-shield .mark { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.svg-shield:hover .mark { stroke: var(--accent-2); }
+
+/* ---------- botão de tema ---------- */
+
+.site-header .tema-botao {
+  margin-top: 1rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.8rem;
+}
+
+.site-header .tema-botao:hover {
+  background: var(--hover);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- boas-vindas ---------- */
+
+.saudacao { margin-top: 1rem; font-size: 0.9rem; }
+
+.saudacao-texto {
+  display: inline;
+  margin: 0 0.6rem 0 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.saudacao-form { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; max-width: 100%; }
+.saudacao-form label { flex-basis: 100%; }
+.saudacao-form input { flex: 1 1 8rem; width: auto; min-width: 0; padding: 0.45rem 0.6rem; font-size: 0.9rem; }
+.saudacao-form button[type="submit"] { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
+
+.botao-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.78rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.botao-link:hover { background: none; color: var(--accent); }
+
+/* ---------- mensagens de erro (nome e formulário) ---------- */
+
+.erro { color: #f85149; font-size: 0.78rem; flex-basis: 100%; }
+:root[data-theme="claro"] .erro { color: #cf222e; }
+.erro:empty { display: none; }
+
+/* ---------- validação do formulário ---------- */
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"],
+select[aria-invalid="true"] {
+  border-color: #f85149;
+}
+
+:root[data-theme="claro"] input[aria-invalid="true"],
+:root[data-theme="claro"] textarea[aria-invalid="true"],
+:root[data-theme="claro"] select[aria-invalid="true"] {
+  border-color: #cf222e;
+}
+
+.checkbox-row { flex-wrap: wrap; }
+
+.form-status {
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--panel-border);
+  font-size: 0.9rem;
+}
+
+.form-status[hidden] { display: none; }
+
+.form-status.sucesso {
+  border-color: var(--accent-2);
+  background: var(--hover);
+  color: var(--accent-2);
+}
+
+.form-status.erro-geral {
+  border-color: #f85149;
+  color: #f85149;
+}
+
+:root[data-theme="claro"] .form-status.erro-geral { border-color: #cf222e; color: #cf222e; }
+
+/* ---------- aviso de rascunho ---------- */
+
+.aviso {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.25rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px dashed var(--accent);
+  border-radius: 4px;
+  background: var(--accent-soft);
+  font-size: 0.85rem;
+}
+
+.aviso[hidden] { display: none; }
+
+/* ---------- rodapé ---------- */
+
+.site-footer {
+  padding: 1.5rem 1.25rem 2rem;
+  border-top: 1px solid var(--panel-border);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+}
+
+/* ---------- utilitário de espaçamento ---------- */
+
+.card .hint { margin-top: 0.75rem; }
+
+fieldset {
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 0.9rem 1rem 1.1rem;
+  margin: 0;
+}
+
+legend {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0 0.4rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.radio-option input { width: auto; }
+.radio-option label { color: var(--text); font-family: var(--font-body); font-size: 0.9rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ============================================================
+   MOBILE-FIRST — tablets a partir de 640px
+   Grid do card-grid passa a ter 2+ colunas; formulário ganha
+   largura máxima confortável.
+   ============================================================ */
+
+@media (min-width: 640px) {
+  main { padding: 2.5rem 2rem; }
+
+  h1 { font-size: 2rem; }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  form { max-width: 520px; }
+}
+
+/* ============================================================
+   MOBILE-FIRST — desktop a partir de 900px
+   O cabeçalho vira barra lateral fixa (Flexbox em linha) e o
+   conteúdo ganha o respiro do layout original.
+   ============================================================ */
+
+@media (min-width: 900px) {
+  .shell { flex-direction: row; }
+
+  .site-header {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    border-bottom: none;
+    border-right: 1px solid var(--panel-border);
+    padding: 2rem 1.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .site-header .identity { flex-wrap: nowrap; }
+  .site-header .identity h1 { margin: 0.75rem 0 0.15rem; }
+
+  .site-nav { margin-top: 2rem; }
+  .site-nav ul { flex-direction: column; flex-wrap: nowrap; gap: 0.1rem; }
+  .site-nav a { margin: 0.1rem 0; }
+
+  .site-header .contact-links {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    flex-direction: column;
+  }
+
+  main {
+    padding: 3rem clamp(1.25rem, 4vw, 4rem);
+  }
+
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.4rem; }
+
+  main .lede { margin-bottom: 2.5rem; }
+
+  section + section { margin-top: 3rem; }
+
+  .card { padding: 1.5rem; }
+
+  .site-footer {
+    margin-left: var(--sidebar-w);
+    padding: 1.5rem clamp(1.25rem, 4vw, 4rem) 2.5rem;
+  }
+}

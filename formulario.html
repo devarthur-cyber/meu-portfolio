@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato — Arthur</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/scripts.js"></script>
+</head>
+<body>
+  <div class="shell">
+
+    <header class="site-header">
+      <div class="identity">
+        <img class="avatar" src="img/foto-arthur.jpg" alt="Foto de Arthur, estudante de tecnologia">
+        <h1>Arthur</h1>
+        <p>Estudante de Tecnologia</p>
+      </div>
+
+      <div class="saudacao" id="saudacao"></div>
+
+      <nav class="site-nav" aria-label="Navegação principal">
+        <p class="label">menu</p>
+        <ul>
+          <li><a href="index.html"><span class="tag">01</span>Início</a></li>
+          <li><a href="curriculo.html"><span class="tag">02</span>Currículo</a></li>
+          <li><a href="formulario.html" aria-current="page"><span class="tag">03</span>Contato</a></li>
+          <li><a href="multimidia.html"><span class="tag">04</span>Multimídia</a></li>
+          <li><a href="graficos.html"><span class="tag">05</span>Gráficos</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="tema-botao" id="tema-botao">Alternar tema</button>
+
+      <div class="contact-links">
+        <a href="https://github.com/devarthur-cyber" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/arthur-gomes-8989a5413" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:arthurgomes0912@gmail.com">E-mail</a>
+      </div>
+    </header>
+
+    <main>
+      <p class="page-kicker">// contato</p>
+      <h1 class="page-title">Fale comigo</h1>
+      <p class="lede">
+        Preencha o formulário abaixo. A validação é feita em JavaScript e mostra
+        o que corrigir logo abaixo de cada campo — nenhum dado é enviado a um
+        servidor, é uma demonstração para fins acadêmicos.
+      </p>
+
+      <div class="card">
+        <div class="aviso" id="rascunho-aviso" role="status" hidden>
+          <span>Rascunho restaurado: recuperei o que você tinha digitado.</span>
+          <button type="button" class="botao-link" id="rascunho-descartar">descartar rascunho</button>
+        </div>
+
+        <form id="form-contato" action="#" method="get" novalidate>
+          <div class="field">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" required minlength="3" placeholder="Seu nome" aria-describedby="erro-nome">
+            <span class="erro" id="erro-nome"></span>
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required placeholder="voce@exemplo.com" aria-describedby="erro-email">
+            <span class="erro" id="erro-email"></span>
+          </div>
+
+          <div class="field">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(11) 91234-5678" aria-describedby="erro-telefone">
+            <span class="hint">Opcional — inclua DDD.</span>
+            <span class="erro" id="erro-telefone"></span>
+          </div>
+
+          <div class="field">
+            <label for="assunto">Assunto</label>
+            <input type="text" id="assunto" name="assunto" required placeholder="Sobre o que você quer falar?" aria-describedby="erro-assunto">
+            <span class="erro" id="erro-assunto"></span>
+          </div>
+
+          <div class="field">
+            <label for="tipo">Tipo de contato</label>
+            <select id="tipo" name="tipo" required aria-describedby="erro-tipo">
+              <option value="">Selecione uma opção</option>
+              <option value="duvida">Dúvida</option>
+              <option value="proposta">Proposta de projeto</option>
+              <option value="feedback">Feedback</option>
+              <option value="outro">Outro</option>
+            </select>
+            <span class="erro" id="erro-tipo"></span>
+          </div>
+
+          <div class="field">
+            <label for="data">Melhor data para retorno</label>
+            <input type="date" id="data" name="data">
+            <span class="hint">Opcional — se preferir um dia específico.</span>
+          </div>
+
+          <fieldset>
+            <legend>Prefere retorno por</legend>
+            <div class="radio-option">
+              <input type="radio" id="retorno-email" name="retorno" value="email" checked>
+              <label for="retorno-email">E-mail</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="retorno-telefone" name="retorno" value="telefone">
+              <label for="retorno-telefone">Telefone</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="retorno-whatsapp" name="retorno" value="whatsapp">
+              <label for="retorno-whatsapp">WhatsApp</label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" required minlength="10" placeholder="Escreva sua mensagem" aria-describedby="erro-mensagem"></textarea>
+            <span class="erro" id="erro-mensagem"></span>
+          </div>
+
+          <div class="field checkbox-row">
+            <input type="checkbox" id="consentimento" name="consentimento" required aria-describedby="erro-consentimento">
+            <label for="consentimento">Concordo em ser contatado sobre o assunto acima.</label>
+            <span class="erro" id="erro-consentimento"></span>
+          </div>
+
+          <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+
+          <button type="submit">Enviar mensagem</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    Site pessoal desenvolvido em HTML5, CSS3 e JavaScript — Centro Universitário Braz Cubas.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currículo — Arthur</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/scripts.js"></script>
+</head>
+<body>
+  <div class="shell">
+
+    <header class="site-header">
+      <div class="identity">
+        <img class="avatar" src="img/foto-arthur.jpg" alt="Foto de Arthur, estudante de tecnologia">
+        <h1>Arthur</h1>
+        <p>Estudante de Tecnologia</p>
+      </div>
+
+      <div class="saudacao" id="saudacao"></div>
+
+      <nav class="site-nav" aria-label="Navegação principal">
+        <p class="label">menu</p>
+        <ul>
+          <li><a href="index.html"><span class="tag">01</span>Início</a></li>
+          <li><a href="curriculo.html" aria-current="page"><span class="tag">02</span>Currículo</a></li>
+          <li><a href="formulario.html"><span class="tag">03</span>Contato</a></li>
+          <li><a href="multimidia.html"><span class="tag">04</span>Multimídia</a></li>
+          <li><a href="graficos.html"><span class="tag">05</span>Gráficos</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="tema-botao" id="tema-botao">Alternar tema</button>
+
+      <div class="contact-links">
+        <a href="https://github.com/devarthur-cyber" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/arthur-gomes-8989a5413" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:arthurgomes0912@gmail.com">E-mail</a>
+      </div>
+    </header>
+
+    <main>
+      <p class="page-kicker">// currículo</p>
+      <h1 class="page-title">Formação, projetos e habilidades</h1>
+      <p class="lede">Um retrato do que venho estudando e construindo até aqui.</p>
+
+      <section>
+        <h2>Formação</h2>
+        <div class="card">
+          <h3>Análise e Desenvolvimento de Sistemas</h3>
+          <p>Centro Universitário Braz Cubas — em andamento</p>
+          <ul>
+            <li>Algoritmos e Pensamento Computacional</li>
+            <li>Desenvolvimento Web</li>
+            <li>DevOps e Cloud</li>
+            <li>Prototipagem de Sistemas Computacionais</li>
+            <li>Metodologias Ágeis</li>
+            <li>Segurança da Informação</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projetos</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>SalesLens</h3>
+            <p>
+              Aplicação web que analisa transcrições de reuniões de vendas usando
+              IA, retornando etapas do funil e objeções identificadas.
+            </p>
+            <a href="https://github.com/devarthur-cyber" target="_blank" rel="noopener">Ver no GitHub</a>
+          </article>
+
+          <article class="card">
+            <h3>Monzani &amp; Gomes</h3>
+            <p>
+              Site institucional para consultoria imobiliária, com integração de
+              dados de imóveis e chat com IA para atendimento ao cliente.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>AutoCuida</h3>
+            <p>
+              Projeto acadêmico de pensamento computacional: alertas de
+              manutenção e documentação de veículos, aplicando decomposição,
+              reconhecimento de padrões e abstração.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Habilidades técnicas</h2>
+        <div class="card">
+          <table>
+            <caption>tecnologias e contexto de uso</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tecnologia</th>
+                <th scope="col">Contexto de uso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Python</td><td>Lógica de programação, listas, dicionários e funções</td></tr>
+              <tr><td>HTML5 &amp; CSS3</td><td>Estruturação semântica e estilo de páginas web</td></tr>
+              <tr><td>Git &amp; GitHub</td><td>Controle de versão e repositórios de projetos</td></tr>
+              <tr><td>Microsoft Excel</td><td>Planilhas e análise de dados</td></tr>
+              <tr><td>Azure AI &amp; Machine Learning</td><td>Estudo de serviços de IA em nuvem</td></tr>
+              <tr><td>PowerPoint &amp; Word</td><td>Documentação e apresentações acadêmicas</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Informações adicionais</h2>
+        <div class="card">
+          <ul>
+            <li>Carteira de habilitação categoria B</li>
+            <li>Interesse em expandir a CNH para as categorias A, C e E</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    Site pessoal desenvolvido em HTML5, CSS3 e JavaScript — Centro Universitário Braz Cubas.
+  </footer>
+</body>
+</html>
